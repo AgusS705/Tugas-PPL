@@ -40,11 +40,11 @@ public class dataTernak extends javax.swing.JFrame {
     
     private void reset(){
         nomer_ternak.setText("");
-        tanggal_sapih.setText("");
+        tanggal_sapih.setDateFormatString("");
         tanggal_lahir_kelamin.setText("");
-        jenis_hewan.setText("");
+        status.setSelectedItem("");
         nomer_induk_jantan.setText("");
-        status.setText("");
+        status.setSelectedItem("");
         bobot.setText("");
         kondisi_badan.setText("");
     }
@@ -83,11 +83,9 @@ public class dataTernak extends javax.swing.JFrame {
         tabel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         nomer_ternak = new javax.swing.JTextField();
-        tanggal_sapih = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tanggal_lahir_kelamin = new javax.swing.JTextField();
-        status = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         nomer_induk_jantan = new javax.swing.JTextField();
@@ -99,8 +97,10 @@ public class dataTernak extends javax.swing.JFrame {
         batal = new javax.swing.JButton();
         buat = new javax.swing.JButton();
         ubah = new javax.swing.JButton();
-        jenis_hewan = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        status = new javax.swing.JComboBox<>();
+        jenis_hewan1 = new javax.swing.JComboBox<>();
+        tanggal_sapih = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -151,6 +151,11 @@ public class dataTernak extends javax.swing.JFrame {
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(0, 0, 0));
         text_dashboard.setText("Dashboard");
+        text_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_dashboardMouseClicked(evt);
+            }
+        });
         home_nav.add(text_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         nav.add(home_nav, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 212, 200, 43));
@@ -298,16 +303,6 @@ public class dataTernak extends javax.swing.JFrame {
         });
         bg.add(nomer_ternak, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 300, 30));
 
-        tanggal_sapih.setBackground(new java.awt.Color(204, 204, 204));
-        tanggal_sapih.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        tanggal_sapih.setForeground(new java.awt.Color(0, 0, 0));
-        tanggal_sapih.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tanggal_sapihActionPerformed(evt);
-            }
-        });
-        bg.add(tanggal_sapih, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 300, 30));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Tanggal Sapih");
@@ -327,16 +322,6 @@ public class dataTernak extends javax.swing.JFrame {
             }
         });
         bg.add(tanggal_lahir_kelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 300, 30));
-
-        status.setBackground(new java.awt.Color(204, 204, 204));
-        status.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        status.setForeground(new java.awt.Color(0, 0, 0));
-        status.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusActionPerformed(evt);
-            }
-        });
-        bg.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 310, 30));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
@@ -432,20 +417,29 @@ public class dataTernak extends javax.swing.JFrame {
         });
         bg.add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
 
-        jenis_hewan.setBackground(new java.awt.Color(204, 204, 204));
-        jenis_hewan.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        jenis_hewan.setForeground(new java.awt.Color(0, 0, 0));
-        jenis_hewan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jenis_hewanActionPerformed(evt);
-            }
-        });
-        bg.add(jenis_hewan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 300, 30));
-
         jLabel13.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setText("Jenis Hewan");
         bg.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, -1, 20));
+
+        status.setBackground(new java.awt.Color(204, 204, 204));
+        status.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        status.setForeground(new java.awt.Color(0, 0, 0));
+        status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Anakan", "Remaja", "Dewasa", " " }));
+        bg.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 310, 30));
+
+        jenis_hewan1.setBackground(new java.awt.Color(204, 204, 204));
+        jenis_hewan1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        jenis_hewan1.setForeground(new java.awt.Color(0, 0, 0));
+        jenis_hewan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kambing", "Domba", "Sapi", " " }));
+        bg.add(jenis_hewan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 300, 30));
+
+        tanggal_sapih.setBackground(new java.awt.Color(204, 204, 204));
+        tanggal_sapih.setForeground(new java.awt.Color(0, 0, 0));
+        tanggal_sapih.setDateFormatString("d MMM, yyyy");
+        tanggal_sapih.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        bg.add(tanggal_sapih, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 300, 30));
+        tanggal_sapih.getAccessibleContext().setAccessibleParent(null);
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -494,17 +488,9 @@ public class dataTernak extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomer_ternakActionPerformed
 
-    private void tanggal_sapihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_sapihActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tanggal_sapihActionPerformed
-
     private void tanggal_lahir_kelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_lahir_kelaminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tanggal_lahir_kelaminActionPerformed
-
-    private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusActionPerformed
 
     private void nomer_induk_jantanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomer_induk_jantanActionPerformed
         // TODO add your handling code here:
@@ -524,6 +510,7 @@ public class dataTernak extends javax.swing.JFrame {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
             cn.createStatement().executeUpdate("delete from ternak where nomer_ternak='"+nomer_ternak.getText()+"'");
             tampilkan();
+            JOptionPane.showMessageDialog(null,"Berhasil dihapus....!!");
             reset();
         } catch (SQLException ex) {
             Logger.getLogger(dataTernak.class.getName()).log(Level.SEVERE, null, ex);
@@ -534,11 +521,12 @@ public class dataTernak extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
-            cn.createStatement().executeUpdate("insert into ternak value"+"('"+nomer_ternak.getText()+"','"+tanggal_sapih.getText()+"','"+tanggal_lahir_kelamin.getText()+"','"+jenis_hewan.getText()+"','"+nomer_induk_jantan.getText()+"','"+status.getText()+"','"+bobot.getText()+"','"+kondisi_badan.getText()+"')");
+            cn.createStatement().executeUpdate("insert into ternak value"+"('"+nomer_ternak.getText()+"','"+tanggal_sapih.getDateFormatString()+"','"+tanggal_lahir_kelamin.getText()+"','"+status.getSelectedItem()+"','"+nomer_induk_jantan.getText()+"','"+status.getSelectedItem()+"','"+bobot.getText()+"','"+kondisi_badan.getText()+"')");
             tampilkan();
+            JOptionPane.showMessageDialog(null,"Berhasil disimpan....!!");
             reset();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"mohon diisi semua kolom");
+            JOptionPane.showMessageDialog(null,"Data Required");
         }
     }//GEN-LAST:event_buatActionPerformed
 
@@ -546,8 +534,9 @@ public class dataTernak extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
-            cn.createStatement().executeUpdate("update ternak set nomer_ternak ='"+nomer_ternak.getText()+"',tanggal_sapih ='"+tanggal_sapih.getText()+"',tanggal_lahir_kelamin ='"+tanggal_lahir_kelamin.getText()+"',jenis_hewan ='"+jenis_hewan.getText()+"',nomer_induk_jantan ='"+nomer_induk_jantan.getText()+"',status ='"+status.getText()+"',bobot ='"+bobot.getText()+"',kondisi_badan ='"+kondisi_badan.getText()+"'");
+            cn.createStatement().executeUpdate("update ternak set tanggal_sapih ='"+tanggal_sapih.getDateFormatString()+"',tanggal_lahir_kelamin ='"+tanggal_lahir_kelamin.getText()+"',jenis_hewan ='"+status.getSelectedItem()+"',nomer_induk_jantan ='"+nomer_induk_jantan.getText()+"',status ='"+status.getSelectedItem()+"',bobot ='"+bobot.getText()+"',kondisi_badan ='"+kondisi_badan.getText()+"' where nomer_ternak ='"+nomer_ternak.getText()+"'");
             tampilkan();
+            JOptionPane.showMessageDialog(null,"Berhasil diubah....!!");
             reset();
         } catch (SQLException ex) {
             Logger.getLogger(dataTernak.class.getName()).log(Level.SEVERE, null, ex);
@@ -559,26 +548,28 @@ public class dataTernak extends javax.swing.JFrame {
         reset();
     }//GEN-LAST:event_batalActionPerformed
 
-    private void jenis_hewanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenis_hewanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jenis_hewanActionPerformed
-
     private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
         // TODO add your handling code here:
         int i = tabel.getSelectedRow();
         
         if(i>-1){
             nomer_ternak.setText(model.getValueAt(i, 0).toString());
-            tanggal_sapih.setText(model.getValueAt(i, 1).toString());
+            tanggal_sapih.setDateFormatString(model.getValueAt(i, 1).toString());
             tanggal_lahir_kelamin.setText(model.getValueAt(i, 2).toString());
-            jenis_hewan.setText(model.getValueAt(i, 3).toString());
+            status.setSelectedItem(model.getValueAt(i, 3).toString());
             nomer_induk_jantan.setText(model.getValueAt(i, 4).toString());
-            status.setText(model.getValueAt(i, 5).toString());
+            status.setSelectedItem(model.getValueAt(i, 5).toString());
             bobot.setText(model.getValueAt(i, 6).toString());
             kondisi_badan.setText(model.getValueAt(i, 7).toString());
             
         }
     }//GEN-LAST:event_tabelMouseClicked
+
+    private void text_dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_dashboardMouseClicked
+        // TODO add your handling code here:
+        new HomepageOperator().show();
+        this.dispose();
+    }//GEN-LAST:event_text_dashboardMouseClicked
 
     /**
      * @param args the command line arguments
@@ -644,15 +635,15 @@ public class dataTernak extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jenis_hewan;
+    private javax.swing.JComboBox<String> jenis_hewan1;
     private javax.swing.JTextField kondisi_badan;
     private javax.swing.JPanel nav;
     private javax.swing.JTextField nomer_induk_jantan;
     private javax.swing.JTextField nomer_ternak;
-    private javax.swing.JTextField status;
+    private javax.swing.JComboBox<String> status;
     private javax.swing.JTable tabel;
     private javax.swing.JTextField tanggal_lahir_kelamin;
-    private javax.swing.JTextField tanggal_sapih;
+    private com.toedter.calendar.JDateChooser tanggal_sapih;
     private javax.swing.JLabel tetx_kembali;
     private javax.swing.JLabel text_administrator;
     private javax.swing.JLabel text_dashboard;

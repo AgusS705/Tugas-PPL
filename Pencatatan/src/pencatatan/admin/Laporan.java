@@ -5,6 +5,25 @@
  */
 package pencatatan.admin;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import koneksi.koneksi;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Agus.S
@@ -14,8 +33,13 @@ public class Laporan extends javax.swing.JFrame {
     /**
      * Creates new form HomePage
      */
+    DefaultTableModel model;
     public Laporan() {
         initComponents();
+        String [] judul = {"Nomer Ternak","Nomer Sapih","Tanggal Lahir / Jenis Kelamin","Jenis Hewan","Nomer Induk / Jantan","Status","Bobot","Kondisi Badan"};
+        model = new DefaultTableModel(judul,0);
+        tabel.setModel(model);
+        tampilkan();
     }
 
     Laporan(Object object, boolean b) {
@@ -52,6 +76,11 @@ public class Laporan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         text_kembali = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        cetak = new javax.swing.JButton();
+        txtCetak = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -205,7 +234,55 @@ public class Laporan extends javax.swing.JFrame {
                 text_kembaliMouseClicked(evt);
             }
         });
-        bg.add(text_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, 70, 28));
+        bg.add(text_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, 70, 28));
+
+        tabel.setBackground(new java.awt.Color(255, 255, 255));
+        tabel.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        tabel.setForeground(new java.awt.Color(0, 0, 0));
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nomer Ternak", "Tanggal Sapih", "Tanggal lahir/tipe kelamin", "Jenis Hewan", "Nomor Induk/Jantan", "Bobot", "Status", "Keterangan"
+            }
+        ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabel);
+
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 580, 230));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("DATA TERNAK");
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
+
+        cetak.setBackground(new java.awt.Color(255, 255, 255));
+        cetak.setForeground(new java.awt.Color(0, 0, 0));
+        cetak.setText("Cetak");
+        cetak.setFocusPainted(false);
+        cetak.setFocusable(false);
+        cetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetakActionPerformed(evt);
+            }
+        });
+        bg.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 100, 30));
+
+        txtCetak.setBackground(new java.awt.Color(255, 255, 255));
+        txtCetak.setForeground(new java.awt.Color(0, 0, 0));
+        bg.add(txtCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 160, 30));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -250,6 +327,41 @@ public class Laporan extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_text_kembaliMouseClicked
 
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+        int i = tabel.getSelectedRow();
+        
+        if(i>-1){
+            txtCetak.setText(model.getValueAt(i, 0).toString());
+            
+        }
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakActionPerformed
+        // TODO add your handling code here:
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
+            try {
+                String report = ("C:\\Users\\Agus.S\\Documents\\NetBeansProjects\\Pencatatan\\src\\pencatatan\\admin\\report.jrxml"); 
+                HashMap hash = new HashMap();
+                hash.put("kode", txtCetak.getText());
+                JasperReport JRpt = JasperCompileManager.compileReport(report);
+                JasperPrint JPrint = JasperFillManager.fillReport(JRpt, hash, con);
+                JasperViewer.viewReport(JPrint, false);
+            }catch (Exception rptexcpt) {
+                System.out.println("Report Can't view because : " + rptexcpt);
+            }
+        }catch (Exception e){
+            System.out.println(e); 
+        }
+//        try {
+//            JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("report_ternak.jasper"), null, koneksi.getConnection());
+//            JasperViewer.viewReport(jp, false);
+//        } catch(Exception e) {
+//            JOptionPane.showMessageDialog(rootPane, e);
+//        }
+    }//GEN-LAST:event_cetakActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,12 +399,14 @@ public class Laporan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton cetak;
     private javax.swing.JPanel home_nav;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon_add;
     private javax.swing.JLabel icon_add2;
     private javax.swing.JLabel icon_home;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -301,11 +415,32 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel nav;
+    private javax.swing.JTable tabel;
     private javax.swing.JLabel text_administrator;
     private javax.swing.JLabel text_dashboard;
     private javax.swing.JLabel text_kembali;
     private javax.swing.JLabel text_profil;
     private javax.swing.JLabel text_tentang;
+    private javax.swing.JTextField txtCetak;
     // End of variables declaration//GEN-END:variables
+
+    private void tampilkan() {
+        //To change body of generated methods, choose Tools | Templates.
+        int row = tabel.getRowCount();
+        for(int a = 0; a<row;a++){
+            model.removeRow(0);
+        }
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
+            ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM ternak");
+            while(rs.next()){
+                String data [] = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)};
+                model.addRow(data);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(pencatatan.operator.dataTernak.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

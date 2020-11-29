@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="17cd5edd-fd23-4705-883e-5a61fcbc6df4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="kode" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM ternak 
+WHERE nomer_ternak LIKE '%$P!{kode}%']]>
+	</queryString>
+	<field name="nomer_ternak" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_sapih" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_lahir_kelamin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_hewan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomer_induk_jantan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bobot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kondisi_badan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="5076080c-867d-4178-b122-1ef60494d7b6" x="0" y="0" width="572" height="91" backcolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="9a6c5921-d0e5-4fe4-953c-a1a8f0bd4a31" x="164" y="13" width="296" height="36" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[KARTU CATATAN ANAK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9a6c5921-d0e5-4fe4-953c-a1a8f0bd4a31" x="142" y="49" width="333" height="36" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[UPT PT DAN HMT JEMBER]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="bf2628aa-60f9-480a-94b0-a430111b17b7" x="0" y="0" width="572" height="27" forecolor="#666666" backcolor="#666666"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="407f3cc3-de01-4c9f-9409-71fe3eaa5124" x="485" y="0" width="87" height="27" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="275" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="170" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="190" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="170" width="241" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="190" width="241" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="26" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="46" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="66" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="86" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="106" width="205" height="20" backcolor="#000000"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="26" width="241" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="46" width="241" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="66" width="241" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="86" width="241" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="106" width="241" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="9936d2b4-4627-42b2-94dd-a1993559fe79" x="2" y="150" width="147" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2. KONDISI BADAN]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fb4e6302-1431-4d1e-bb26-471507b9b2ba" x="271" y="170" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bobot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="da4a0683-b794-4cb6-8311-a002c5cdefe7" x="64" y="170" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Bobot]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b1f6ddba-faaf-4305-bc9b-8014960f3bf8" x="271" y="190" width="143" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kondisi_badan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1f91b1c5-897a-44ce-b89f-1ac3f54bfe15" x="64" y="190" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Kondisi Badan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9936d2b4-4627-42b2-94dd-a1993559fe79" x="2" y="5" width="147" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. IDENTITAS TERNAK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e37ad35b-5cc8-40cc-ab02-db386a32a4a8" x="64" y="29" width="100" height="20" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nomor Ternak]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c8b2e050-696b-4cf9-83f5-a879111321e2" x="271" y="28" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomer_ternak}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9ba5a442-b9ad-43e3-ba13-3fe81a8d326f" x="64" y="50" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal Sapih]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5e9c9fa4-eb3c-47c9-955a-6c2075fa21c3" x="271" y="48" width="131" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal_sapih}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="59e8f4c2-9e02-4c13-b0a2-59da026b380a" x="64" y="70" width="142" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal Lahir / Kelamin]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="7ca61cd9-e3ed-486e-8b83-d2fa5b9dd958" x="271" y="66" width="159" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal_lahir_kelamin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="878db299-2539-454b-bc23-d4b68c9b1193" x="64" y="91" width="127" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nomor Induk / Jantan]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="783cc05f-3a97-40c3-9781-d3f265962f0a" x="271" y="87" width="158" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomer_induk_jantan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d4a7a5f5-19be-400a-b075-88630ae19958" x="64" y="110" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jenis Hewan]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9fc52f58-85ab-4ff1-b193-3e22ffd34c26" x="271" y="106" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis_hewan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<frame>
+				<reportElement uuid="dbeb662a-d870-47b8-a7af-eb17032317e7" mode="Opaque" x="0" y="0" width="572" height="24" forecolor="#D0B48E" backcolor="#000000"/>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

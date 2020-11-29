@@ -5,17 +5,22 @@
  */
 package pencatatan.operator;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -73,7 +78,8 @@ public class Laporan extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        txtCetak = new javax.swing.JTextField();
+        cetak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -227,7 +233,7 @@ public class Laporan extends javax.swing.JFrame {
                 text_kembaliMouseClicked(evt);
             }
         });
-        bg.add(text_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, 70, 28));
+        bg.add(text_kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, 70, 28));
 
         tabel.setBackground(new java.awt.Color(255, 255, 255));
         tabel.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
@@ -254,24 +260,28 @@ public class Laporan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabel);
 
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 690, 230));
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 610, 230));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("DATA TERNAK");
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Cetak");
-        jButton2.setFocusPainted(false);
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        txtCetak.setBackground(new java.awt.Color(255, 255, 255));
+        txtCetak.setForeground(new java.awt.Color(0, 0, 0));
+        bg.add(txtCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 160, 30));
+
+        cetak.setBackground(new java.awt.Color(255, 255, 255));
+        cetak.setForeground(new java.awt.Color(0, 0, 0));
+        cetak.setText("Cetak");
+        cetak.setFocusPainted(false);
+        cetak.setFocusable(false);
+        cetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cetakActionPerformed(evt);
             }
         });
-        bg.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 130, -1));
+        bg.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 100, 30));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -321,15 +331,30 @@ public class Laporan extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tabelMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakActionPerformed
         // TODO add your handling code here:
         try {
-        JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("report_ternak.jasper"), null, koneksi.getConnection());
-        JasperViewer.viewReport(jp, false);
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
+            try {
+                    String report = ("C:\\Users\\Agus.S\\Documents\\NetBeansProjects\\Pencatatan\\src\\pencatatan\\operator\\report.jrxml");
+                    HashMap hash = new HashMap();
+                    hash.put("kode", txtCetak.getText());
+                    JasperReport JRpt = JasperCompileManager.compileReport(report);
+                    JasperPrint JPrint = JasperFillManager.fillReport(JRpt, hash, con);
+                    JasperViewer.viewReport(JPrint, false);
+                }catch (Exception rptexcpt) {
+                    System.out.println("Laporan tidak bisa diliahat : " + rptexcpt);
+                }
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        //        try {
+            //            JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("report_ternak.jasper"), null, koneksi.getConnection());
+            //            JasperViewer.viewReport(jp, false);
+            //        } catch(Exception e) {
+            //            JOptionPane.showMessageDialog(rootPane, e);
+            //        }
+    }//GEN-LAST:event_cetakActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,13 +393,13 @@ public class Laporan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton cetak;
     private javax.swing.JPanel home_nav;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon_add;
     private javax.swing.JLabel icon_add2;
     private javax.swing.JLabel icon_home;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -392,6 +417,7 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JLabel text_kembali;
     private javax.swing.JLabel text_profil;
     private javax.swing.JLabel text_tentang;
+    private javax.swing.JTextField txtCetak;
     // End of variables declaration//GEN-END:variables
 
     private void tampilkan() {

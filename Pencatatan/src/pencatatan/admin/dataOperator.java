@@ -434,14 +434,14 @@ public class dataOperator extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameActionPerformed
 
     private void buatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buatActionPerformed
+        // TODO add your handling code here:
         try {
-            // TODO add your handling code here:
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pencatatan","root","");
             cn.createStatement().executeUpdate("insert into operator value"+"('"+id.getText()+"','"+nama.getText()+"','"+username.getText()+"','"+password.getText()+"')");
             tampilkan();
             reset();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"mohon diisi semua kolom");
+            JOptionPane.showMessageDialog(null,"Data Required");
         }
     }//GEN-LAST:event_buatActionPerformed
 
@@ -449,7 +449,7 @@ public class dataOperator extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pencatatan","root","");
-            cn.createStatement().executeUpdate("update operator set id ='"+id.getText()+"',nama ='"+nama.getText()+"',username ='"+username.getText()+"',password ='"+password.getText()+"'");
+            cn.createStatement().executeUpdate("update operator set nama ='"+nama.getText()+"',username ='"+username.getText()+"',password ='"+password.getText()+"' where id ='"+id.getText()+"'");
             tampilkan();
             reset();
         } catch (SQLException ex) {
@@ -460,8 +460,8 @@ public class dataOperator extends javax.swing.JFrame {
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
         try {
             // TODO add your handling code here:
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
-            cn.createStatement().executeUpdate("delete from ternak where nomer_ternak='"+id.getText()+"'");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pencatatan","root","");
+            cn.createStatement().executeUpdate("delete from operator where id='"+id.getText()+"'");
             tampilkan();
             reset();
         } catch (SQLException ex) {
