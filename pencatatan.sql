@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2020 at 06:29 AM
+-- Generation Time: Dec 14, 2020 at 01:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id` int(10) NOT NULL,
+  `nama` varchar(20) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -38,8 +39,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(1, 'cobaadmin', '12345');
+INSERT INTO `admin` (`id`, `nama`, `username`, `password`) VALUES
+(1, 'Administrator', 'cobaadmin', '12345');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,8 @@ CREATE TABLE `operator` (
 
 INSERT INTO `operator` (`id`, `nama`, `username`, `password`) VALUES
 (1, 'operator', 'operator', '12345'),
-(2, 'add', 'az', 'qwe');
+(2, 'aa', 'sddd', 'adad'),
+(3, 'cobaubah', 'coba', 'coba');
 
 --
 -- Indexes for dumped tables
@@ -92,7 +94,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `operator`
 --
 ALTER TABLE `operator`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=556;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

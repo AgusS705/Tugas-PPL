@@ -9,11 +9,14 @@ package pencatatan.operator;
  *
  * @author Agus.S
  */
+import pencatatan.Login;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -40,7 +43,7 @@ public class dataTernak extends javax.swing.JFrame {
     
     private void reset(){
         nomer_ternak.setText("");
-        tanggal_sapih.setDateFormatString("");
+        tanggal_sapih.setDate(null);
         tanggal_lahir_kelamin.setText("");
         status.setSelectedItem("");
         nomer_induk_jantan.setText("");
@@ -76,16 +79,13 @@ public class dataTernak extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         tetx_kembali = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        nomer_ternak = new javax.swing.JTextField();
+        tanggal_lahir_kelamin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tanggal_lahir_kelamin = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         nomer_induk_jantan = new javax.swing.JTextField();
@@ -99,8 +99,11 @@ public class dataTernak extends javax.swing.JFrame {
         ubah = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         status = new javax.swing.JComboBox<>();
-        jenis_hewan1 = new javax.swing.JComboBox<>();
+        jenis_hewan = new javax.swing.JComboBox<>();
         tanggal_sapih = new com.toedter.calendar.JDateChooser();
+        nomer_ternak = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -150,7 +153,7 @@ public class dataTernak extends javax.swing.JFrame {
 
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(0, 0, 0));
-        text_dashboard.setText("Dashboard");
+        text_dashboard.setText("Home");
         text_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 text_dashboardMouseClicked(evt);
@@ -232,23 +235,13 @@ public class dataTernak extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Home > Dashboard > Data Ternak");
+        jLabel8.setText("Home > Data Ternak");
         jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
         jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
 
         bg.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 690, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Dashboard");
-        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Version 0.0");
-        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 71, -1, 20));
 
         tetx_kembali.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         tetx_kembali.setForeground(new java.awt.Color(35, 63, 116));
@@ -293,15 +286,15 @@ public class dataTernak extends javax.swing.JFrame {
         jLabel1.setText("Nomer Ternak");
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, -1, 20));
 
-        nomer_ternak.setBackground(new java.awt.Color(204, 204, 204));
-        nomer_ternak.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        nomer_ternak.setForeground(new java.awt.Color(0, 0, 0));
-        nomer_ternak.addActionListener(new java.awt.event.ActionListener() {
+        tanggal_lahir_kelamin.setBackground(new java.awt.Color(204, 204, 204));
+        tanggal_lahir_kelamin.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        tanggal_lahir_kelamin.setForeground(new java.awt.Color(0, 0, 0));
+        tanggal_lahir_kelamin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomer_ternakActionPerformed(evt);
+                tanggal_lahir_kelaminActionPerformed(evt);
             }
         });
-        bg.add(nomer_ternak, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 300, 30));
+        bg.add(tanggal_lahir_kelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 300, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -312,16 +305,6 @@ public class dataTernak extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Tanggal Lahit / Jenis Kelamin");
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, 20));
-
-        tanggal_lahir_kelamin.setBackground(new java.awt.Color(204, 204, 204));
-        tanggal_lahir_kelamin.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        tanggal_lahir_kelamin.setForeground(new java.awt.Color(0, 0, 0));
-        tanggal_lahir_kelamin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tanggal_lahir_kelaminActionPerformed(evt);
-            }
-        });
-        bg.add(tanggal_lahir_kelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 300, 30));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
@@ -428,18 +411,42 @@ public class dataTernak extends javax.swing.JFrame {
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Anakan", "Remaja", "Dewasa", " " }));
         bg.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 310, 30));
 
-        jenis_hewan1.setBackground(new java.awt.Color(204, 204, 204));
-        jenis_hewan1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        jenis_hewan1.setForeground(new java.awt.Color(0, 0, 0));
-        jenis_hewan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kambing", "Domba", "Sapi", " " }));
-        bg.add(jenis_hewan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 300, 30));
+        jenis_hewan.setBackground(new java.awt.Color(204, 204, 204));
+        jenis_hewan.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        jenis_hewan.setForeground(new java.awt.Color(0, 0, 0));
+        jenis_hewan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kambing", "Domba", "Sapi", " " }));
+        bg.add(jenis_hewan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 300, 30));
 
         tanggal_sapih.setBackground(new java.awt.Color(204, 204, 204));
         tanggal_sapih.setForeground(new java.awt.Color(0, 0, 0));
-        tanggal_sapih.setDateFormatString("d MMM, yyyy");
+        tanggal_sapih.setDateFormatString("dd-MM-yyyy");
         tanggal_sapih.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        tanggal_sapih.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tanggal_sapihPropertyChange(evt);
+            }
+        });
         bg.add(tanggal_sapih, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 300, 30));
-        tanggal_sapih.getAccessibleContext().setAccessibleParent(null);
+
+        nomer_ternak.setBackground(new java.awt.Color(204, 204, 204));
+        nomer_ternak.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        nomer_ternak.setForeground(new java.awt.Color(0, 0, 0));
+        nomer_ternak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomer_ternakActionPerformed(evt);
+            }
+        });
+        bg.add(nomer_ternak, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 300, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Home");
+        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Version 0.0");
+        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 76, -1, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -484,14 +491,6 @@ public class dataTernak extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_tetx_kembaliMouseClicked
 
-    private void nomer_ternakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomer_ternakActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomer_ternakActionPerformed
-
-    private void tanggal_lahir_kelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_lahir_kelaminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tanggal_lahir_kelaminActionPerformed
-
     private void nomer_induk_jantanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomer_induk_jantanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomer_induk_jantanActionPerformed
@@ -508,7 +507,7 @@ public class dataTernak extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
-            cn.createStatement().executeUpdate("delete from ternak where nomer_ternak='"+nomer_ternak.getText()+"'");
+            cn.createStatement().executeUpdate("delete from ternak where nomer_ternak='"+tanggal_lahir_kelamin.getText()+"'");
             tampilkan();
             JOptionPane.showMessageDialog(null,"Berhasil dihapus....!!");
             reset();
@@ -520,8 +519,10 @@ public class dataTernak extends javax.swing.JFrame {
     private void buatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buatActionPerformed
         try {
             // TODO add your handling code here:
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
-            cn.createStatement().executeUpdate("insert into ternak value"+"('"+nomer_ternak.getText()+"','"+tanggal_sapih.getDateFormatString()+"','"+tanggal_lahir_kelamin.getText()+"','"+status.getSelectedItem()+"','"+nomer_induk_jantan.getText()+"','"+status.getSelectedItem()+"','"+bobot.getText()+"','"+kondisi_badan.getText()+"')");
+            cn.createStatement().executeUpdate("insert into ternak value"+"('"+nomer_ternak.getText()+"','"+dateFormat.format(tanggal_sapih.getDate())+"','"+tanggal_lahir_kelamin.getText()+"','"+jenis_hewan.getSelectedItem()+"','"+nomer_induk_jantan.getText()+"','"+status.getSelectedItem()+"','"+bobot.getText()+"','"+kondisi_badan.getText()+"')");
             tampilkan();
             JOptionPane.showMessageDialog(null,"Berhasil disimpan....!!");
             reset();
@@ -533,8 +534,9 @@ public class dataTernak extends javax.swing.JFrame {
     private void ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahActionPerformed
         try {
             // TODO add your handling code here:
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/ternak","root","");
-            cn.createStatement().executeUpdate("update ternak set tanggal_sapih ='"+tanggal_sapih.getDateFormatString()+"',tanggal_lahir_kelamin ='"+tanggal_lahir_kelamin.getText()+"',jenis_hewan ='"+status.getSelectedItem()+"',nomer_induk_jantan ='"+nomer_induk_jantan.getText()+"',status ='"+status.getSelectedItem()+"',bobot ='"+bobot.getText()+"',kondisi_badan ='"+kondisi_badan.getText()+"' where nomer_ternak ='"+nomer_ternak.getText()+"'");
+            cn.createStatement().executeUpdate("update ternak set tanggal_sapih ='"+dateFormat.format(tanggal_sapih.getDate())+"',tanggal_lahir_kelamin ='"+tanggal_lahir_kelamin.getText()+"',jenis_hewan ='"+jenis_hewan.getSelectedItem()+"',nomer_induk_jantan ='"+nomer_induk_jantan.getText()+"',status ='"+status.getSelectedItem()+"',bobot ='"+bobot.getText()+"',kondisi_badan ='"+kondisi_badan.getText()+"' where nomer_ternak ='"+nomer_ternak.getText()+"'");
             tampilkan();
             JOptionPane.showMessageDialog(null,"Berhasil diubah....!!");
             reset();
@@ -551,17 +553,24 @@ public class dataTernak extends javax.swing.JFrame {
     private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
         // TODO add your handling code here:
         int i = tabel.getSelectedRow();
-        
+                
         if(i>-1){
             nomer_ternak.setText(model.getValueAt(i, 0).toString());
-            tanggal_sapih.setDateFormatString(model.getValueAt(i, 1).toString());
+////            tanggal_sapih.setDate(Date.valueOf(model.getValueAt(i, 1).toString()));
+//            tanggal_sapih.setDateFormatString(model.getValueAt(i, 1).toString());
             tanggal_lahir_kelamin.setText(model.getValueAt(i, 2).toString());
-            status.setSelectedItem(model.getValueAt(i, 3).toString());
+            jenis_hewan.setSelectedItem(model.getValueAt(i, 3).toString());
             nomer_induk_jantan.setText(model.getValueAt(i, 4).toString());
             status.setSelectedItem(model.getValueAt(i, 5).toString());
             bobot.setText(model.getValueAt(i, 6).toString());
             kondisi_badan.setText(model.getValueAt(i, 7).toString());
             
+        }
+        try {
+            Date date = new SimpleDateFormat("dd-MM-yyyy").parse((String)model.getValueAt(i, 1).toString());
+            tanggal_sapih.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(dataTernak.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tabelMouseClicked
 
@@ -570,6 +579,18 @@ public class dataTernak extends javax.swing.JFrame {
         new HomepageOperator().show();
         this.dispose();
     }//GEN-LAST:event_text_dashboardMouseClicked
+
+    private void tanggal_sapihPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggal_sapihPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tanggal_sapihPropertyChange
+
+    private void nomer_ternakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomer_ternakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomer_ternakActionPerformed
+
+    private void tanggal_lahir_kelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_lahir_kelaminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tanggal_lahir_kelaminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,7 +656,7 @@ public class dataTernak extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jenis_hewan1;
+    private javax.swing.JComboBox<String> jenis_hewan;
     private javax.swing.JTextField kondisi_badan;
     private javax.swing.JPanel nav;
     private javax.swing.JTextField nomer_induk_jantan;

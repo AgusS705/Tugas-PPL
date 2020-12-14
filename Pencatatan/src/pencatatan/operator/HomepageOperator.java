@@ -5,6 +5,7 @@
  */
 package pencatatan.operator;
 
+import pencatatan.Login;
 /**
  *
  * @author Agus.S
@@ -55,12 +56,17 @@ public class HomepageOperator extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        text_lihat_laporan = new javax.swing.JLabel();
+        text_lihat_pencatatan = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        text_lihat_laporan = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,7 +116,7 @@ public class HomepageOperator extends javax.swing.JFrame {
 
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(0, 0, 0));
-        text_dashboard.setText("Dashboard");
+        text_dashboard.setText("Home");
         home_nav.add(text_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         nav.add(home_nav, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 212, 200, 43));
@@ -250,8 +256,73 @@ public class HomepageOperator extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel10.setText("Laporan");
-        jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        jLabel10.setText("Pencatatan");
+        jPanel9.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
+
+        text_lihat_pencatatan.setFont(new java.awt.Font("Segoe UI Light", 0, 19)); // NOI18N
+        text_lihat_pencatatan.setForeground(new java.awt.Color(35, 63, 116));
+        text_lihat_pencatatan.setText("  Lihat data");
+        text_lihat_pencatatan.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(35, 63, 116)));
+        text_lihat_pencatatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_lihat_pencatatanMouseClicked(evt);
+            }
+        });
+        jPanel9.add(text_lihat_pencatatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 100, -1));
+
+        bg.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 330, 150));
+
+        jPanel13.setBackground(new java.awt.Color(35, 63, 116));
+        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Home");
+        jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
+        jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
+
+        bg.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 690, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Home");
+        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Version 0.0");
+        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 76, -1, -1));
+
+        jPanel11.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel12.setBackground(new java.awt.Color(35, 63, 116));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/report.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        );
+
+        jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 150));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel11.setText("Laporan");
+        jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
         text_lihat_laporan.setFont(new java.awt.Font("Segoe UI Light", 0, 19)); // NOI18N
         text_lihat_laporan.setForeground(new java.awt.Color(35, 63, 116));
@@ -262,33 +333,9 @@ public class HomepageOperator extends javax.swing.JFrame {
                 text_lihat_laporanMouseClicked(evt);
             }
         });
-        jPanel9.add(text_lihat_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 100, -1));
+        jPanel11.add(text_lihat_laporan, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 100, -1));
 
-        bg.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 330, 150));
-
-        jPanel13.setBackground(new java.awt.Color(35, 63, 116));
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Home > Dashboard");
-        jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
-        jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
-
-        bg.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 690, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Dashboard");
-        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Version 0.0");
-        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 71, -1, 20));
+        bg.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 330, 150));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -332,6 +379,12 @@ public class HomepageOperator extends javax.swing.JFrame {
         new dataTernak().show();
         this.dispose();
     }//GEN-LAST:event_text_lihat_ternakMouseClicked
+
+    private void text_lihat_pencatatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_lihat_pencatatanMouseClicked
+        // TODO add your handling code here:
+        new Pencatatan().show();
+        this.dispose();
+    }//GEN-LAST:event_text_lihat_pencatatanMouseClicked
 
     private void text_lihat_laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_lihat_laporanMouseClicked
         // TODO add your handling code here:
@@ -383,16 +436,20 @@ public class HomepageOperator extends javax.swing.JFrame {
     private javax.swing.JLabel icon_home;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
@@ -402,6 +459,7 @@ public class HomepageOperator extends javax.swing.JFrame {
     private javax.swing.JLabel text_administrator;
     private javax.swing.JLabel text_dashboard;
     private javax.swing.JLabel text_lihat_laporan;
+    private javax.swing.JLabel text_lihat_pencatatan;
     private javax.swing.JLabel text_lihat_ternak;
     private javax.swing.JLabel text_profil;
     private javax.swing.JLabel text_tentang;

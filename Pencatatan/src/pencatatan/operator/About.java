@@ -5,6 +5,8 @@
  */
 package pencatatan.operator;
 
+import pencatatan.Login;
+
 /**
  *
  * @author Agus.S
@@ -128,7 +130,7 @@ public class About extends javax.swing.JFrame {
 
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(255, 255, 255));
-        text_dashboard.setText("Dashboard");
+        text_dashboard.setText("Home");
         text_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 text_dashboardMouseClicked(evt);

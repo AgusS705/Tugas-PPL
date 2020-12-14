@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2020 at 06:29 AM
+-- Generation Time: Dec 14, 2020 at 01:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -21,6 +21,58 @@ SET time_zone = "+00:00";
 --
 -- Database: `ternak`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riwayat_bobot`
+--
+
+CREATE TABLE `riwayat_bobot` (
+  `no` int(11) NOT NULL,
+  `nomer_ternak` int(10) NOT NULL,
+  `tanggal_penimbangan` date NOT NULL,
+  `bobot` varchar(10) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `riwayat_bobot`
+--
+
+INSERT INTO `riwayat_bobot` (`no`, `nomer_ternak`, `tanggal_penimbangan`, `bobot`, `keterangan`) VALUES
+(1, 1, '2020-12-01', '55', 'sakit'),
+(2, 1, '2020-12-08', '60', 'sehat'),
+(3, 2, '2020-12-08', '70', '-'),
+(4, 3, '2020-12-15', '45', 's'),
+(5, 2, '2020-12-01', '75', 's');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riwayat_kesehatan`
+--
+
+CREATE TABLE `riwayat_kesehatan` (
+  `no` int(11) NOT NULL,
+  `nomer_ternak` int(10) NOT NULL,
+  `tanggal` date NOT NULL,
+  `gejala` varchar(30) NOT NULL,
+  `diagnosa` varchar(30) NOT NULL,
+  `tindakan` text NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `riwayat_kesehatan`
+--
+
+INSERT INTO `riwayat_kesehatan` (`no`, `nomer_ternak`, `tanggal`, `gejala`, `diagnosa`, `tindakan`, `keterangan`) VALUES
+(1, 1, '2020-12-01', '-', '-', '-', '-'),
+(2, 1, '2020-12-06', 'batuk', 'sakit', 'suntik', '-'),
+(3, 2, '2020-12-08', 'pilek', 'tipes', 'suntik', '-'),
+(4, 3, '2020-12-15', 'g', 'd', 't', 'k'),
+(5, 2, '2020-12-01', 'k', 'k', 'k', 'k');
 
 -- --------------------------------------------------------
 
@@ -44,11 +96,27 @@ CREATE TABLE `ternak` (
 --
 
 INSERT INTO `ternak` (`nomer_ternak`, `tanggal_sapih`, `tanggal_lahir_kelamin`, `jenis_hewan`, `nomer_induk_jantan`, `status`, `bobot`, `kondisi_badan`) VALUES
-(121, '20-10-2020', '10-12-2020 , laki-laki', 'kambing', 12221, 'anakan', 'anakan', 'sehat');
+(1, '07-12-2020', '09-12-2020 / P', 'Kambing', 2, 'Remaja', '55', 's'),
+(2, '17-12-2020', '15-12-2020 / P', 'Domba', 3, 'Remaja', '66', 's'),
+(3, '12-12-2020', '17-12-2020 / L', 'Domba', 4, 'Dewasa', '76', 's'),
+(4, '25-12-2020', '14-10-2020 / L', 'Kambing', 5, 'Anakan', '54', 'p'),
+(5, '13-12-2020', '12-12-2020', 'Sapi', 6, 'Anakan', '66', 'd');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `riwayat_bobot`
+--
+ALTER TABLE `riwayat_bobot`
+  ADD PRIMARY KEY (`no`);
+
+--
+-- Indexes for table `riwayat_kesehatan`
+--
+ALTER TABLE `riwayat_kesehatan`
+  ADD PRIMARY KEY (`no`);
 
 --
 -- Indexes for table `ternak`
@@ -61,10 +129,16 @@ ALTER TABLE `ternak`
 --
 
 --
--- AUTO_INCREMENT for table `ternak`
+-- AUTO_INCREMENT for table `riwayat_bobot`
 --
-ALTER TABLE `ternak`
-  MODIFY `nomer_ternak` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101011;
+ALTER TABLE `riwayat_bobot`
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `riwayat_kesehatan`
+--
+ALTER TABLE `riwayat_kesehatan`
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,7 +2,165 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="17cd5edd-fd23-4705-883e-5a61fcbc6df4">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="136"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#000000">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFE6E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#CCB08F">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#E6DBCF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="bobot" uuid="7cce0b33-4a1c-4b8d-bfa5-fd9512235467">
+		<queryString language="SQL">
+			<![CDATA[select * from riwayat_bobot]]>
+		</queryString>
+		<field name="nomer_ternak" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tanggal_penimbangan" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="bobot" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="keterangan" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="sehat" uuid="6dfb41e1-048a-402b-a65b-0b11daf0e5fe">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     riwayat_kesehatan.`no` AS riwayat_kesehatan_no,
+     riwayat_kesehatan.`nomer_ternak` AS riwayat_kesehatan_nomer_ternak,
+     riwayat_kesehatan.`tanggal` AS riwayat_kesehatan_tanggal,
+     riwayat_kesehatan.`gejala` AS riwayat_kesehatan_gejala,
+     riwayat_kesehatan.`diagnosa` AS riwayat_kesehatan_diagnosa,
+     riwayat_kesehatan.`tindakan` AS riwayat_kesehatan_tindakan,
+     riwayat_kesehatan.`keterangan` AS riwayat_kesehatan_keterangan
+FROM
+     `riwayat_kesehatan` riwayat_kesehatan]]>
+		</queryString>
+		<field name="riwayat_kesehatan_no" class="java.lang.Integer"/>
+		<field name="riwayat_kesehatan_nomer_ternak" class="java.lang.Integer"/>
+		<field name="riwayat_kesehatan_tanggal" class="java.sql.Date"/>
+		<field name="riwayat_kesehatan_gejala" class="java.lang.String"/>
+		<field name="riwayat_kesehatan_diagnosa" class="java.lang.String"/>
+		<field name="riwayat_kesehatan_tindakan" class="java.lang.String"/>
+		<field name="riwayat_kesehatan_keterangan" class="java.lang.String"/>
+	</subDataset>
 	<parameter name="kode" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM ternak 
@@ -38,14 +196,14 @@ WHERE nomer_ternak LIKE '%$P!{kode}%']]>
 	<title>
 		<band height="93" splitType="Stretch">
 			<rectangle>
-				<reportElement uuid="5076080c-867d-4178-b122-1ef60494d7b6" x="0" y="0" width="572" height="91" backcolor="#000000"/>
+				<reportElement uuid="5076080c-867d-4178-b122-1ef60494d7b6" x="2" y="0" width="572" height="91" backcolor="#000000"/>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="9a6c5921-d0e5-4fe4-953c-a1a8f0bd4a31" x="164" y="13" width="296" height="36" forecolor="#FFFFFF"/>
+				<reportElement uuid="9a6c5921-d0e5-4fe4-953c-a1a8f0bd4a31" x="207" y="13" width="207" height="36" forecolor="#FFFFFF"/>
 				<textElement>
 					<font size="24"/>
 				</textElement>
-				<text><![CDATA[KARTU CATATAN ANAK]]></text>
+				<text><![CDATA[KARTU CATATAN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="9a6c5921-d0e5-4fe4-953c-a1a8f0bd4a31" x="142" y="49" width="333" height="36" forecolor="#FFFFFF"/>
@@ -62,7 +220,7 @@ WHERE nomer_ternak LIKE '%$P!{kode}%']]>
 				<reportElement uuid="bf2628aa-60f9-480a-94b0-a430111b17b7" x="0" y="0" width="572" height="27" forecolor="#666666" backcolor="#666666"/>
 			</rectangle>
 			<textField>
-				<reportElement uuid="407f3cc3-de01-4c9f-9409-71fe3eaa5124" x="485" y="0" width="87" height="27" forecolor="#FFFFFF" backcolor="#000000"/>
+				<reportElement uuid="407f3cc3-de01-4c9f-9409-71fe3eaa5124" x="271" y="0" width="87" height="27" forecolor="#FFFFFF" backcolor="#000000"/>
 				<textElement>
 					<font size="16"/>
 				</textElement>
@@ -71,25 +229,7 @@ WHERE nomer_ternak LIKE '%$P!{kode}%']]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="275" splitType="Stretch">
-			<rectangle>
-				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="170" width="205" height="20" backcolor="#000000"/>
-				<graphicElement>
-					<pen lineColor="#FFFFFF"/>
-				</graphicElement>
-			</rectangle>
-			<rectangle>
-				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="190" width="205" height="20" backcolor="#000000"/>
-				<graphicElement>
-					<pen lineColor="#FFFFFF"/>
-				</graphicElement>
-			</rectangle>
-			<rectangle>
-				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="170" width="241" height="20"/>
-			</rectangle>
-			<rectangle>
-				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="190" width="241" height="20"/>
-			</rectangle>
+		<band height="442" splitType="Stretch">
 			<rectangle>
 				<reportElement uuid="18a3fde6-b9a8-4079-92b1-cbb8988e883a" x="49" y="26" width="205" height="20" backcolor="#000000"/>
 				<graphicElement>
@@ -136,39 +276,12 @@ WHERE nomer_ternak LIKE '%$P!{kode}%']]>
 				<reportElement uuid="8352c721-5aad-4a9b-a6d5-fbb30748ccff" x="254" y="106" width="241" height="20"/>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="9936d2b4-4627-42b2-94dd-a1993559fe79" x="2" y="150" width="147" height="20"/>
+				<reportElement uuid="9936d2b4-4627-42b2-94dd-a1993559fe79" x="2" y="167" width="321" height="20"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[2. KONDISI BADAN]]></text>
-			</staticText>
-			<textField>
-				<reportElement uuid="fb4e6302-1431-4d1e-bb26-471507b9b2ba" x="271" y="170" width="100" height="20"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bobot}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="da4a0683-b794-4cb6-8311-a002c5cdefe7" x="64" y="170" width="100" height="20" forecolor="#FFFFFF"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Bobot]]></text>
-			</staticText>
-			<textField>
-				<reportElement uuid="b1f6ddba-faaf-4305-bc9b-8014960f3bf8" x="271" y="190" width="143" height="20"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{kondisi_badan}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="1f91b1c5-897a-44ce-b89f-1ac3f54bfe15" x="64" y="190" width="100" height="20" forecolor="#FFFFFF"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Kondisi Badan]]></text>
+				<text><![CDATA[2. RIWAYAT PERTAMBAHAN BOBOT BADAN
+]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="9936d2b4-4627-42b2-94dd-a1993559fe79" x="2" y="5" width="147" height="20"/>
@@ -247,6 +360,196 @@ WHERE nomer_ternak LIKE '%$P!{kode}%']]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jenis_hewan}]]></textFieldExpression>
 			</textField>
+			<rectangle>
+				<reportElement uuid="16070397-b272-4102-8e27-37f7e5b84872" x="49" y="187" width="446" height="20" forecolor="#FFFFFF" backcolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="63" y="187" width="79" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nomor Ternak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="181" y="187" width="107" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tgl Penimbangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="323" y="187" width="62" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Bobot]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="414" y="187" width="73" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="e2e4701b-ad4b-4633-9a27-797ca4449318" key="table 4" style="table 4" x="49" y="207" width="446" height="20"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="bobot" uuid="e3186ea1-e8ba-4ddb-8523-e3ee150ca16a">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="114" uuid="f8177da1-aea2-4bab-9939-6300f82dc3de">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="15edf0d6-3f80-498d-a610-a8fb09a8dfeb" x="54" y="0" width="50" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{nomer_ternak}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="127" uuid="cdaef9b0-a86a-420a-b90e-395abe94d25e">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="406b6840-b316-4b2c-95a3-dd7c60ee6b5e" x="40" y="0" width="73" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{tanggal_penimbangan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="cdd0e326-7c5c-4724-811e-887048171f5c">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="d072a3b7-e95a-4620-83b5-35b0de6fe538" x="42" y="0" width="48" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{bobot}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="104" uuid="a44ebcec-be09-4458-913f-3b5eb225c59a">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="063ecdc8-9b38-4ef4-aebb-56dccc28f919" x="39" y="0" width="65" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="9936d2b4-4627-42b2-94dd-a1993559fe79" x="2" y="328" width="321" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3. RIWAYAT KESEHATAN
+]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="ce073af6-da71-4b41-bbb4-8eeb8eb97c03" key="table 5" style="table 5" x="49" y="378" width="465" height="20"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="sehat" uuid="b86fc590-1d28-4edb-b77d-e99ca56e0573">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="34" uuid="0ed7f806-f84e-4298-9c5b-1c0a12e41e37">
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="b656f884-ab1c-4bc6-83a2-2d91fdebfd01" x="6" y="0" width="28" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{riwayat_kesehatan_nomer_ternak}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5da72053-23f8-4e4f-82d3-ba4e9ba5131e">
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="79a1270a-454b-4d7c-a8a8-b02c8b0f0a71" x="0" y="0" width="90" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{riwayat_kesehatan_tanggal}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="54b3bce8-1554-4202-bd8b-f49a3f456930">
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="c6ecf770-14e1-47ef-992a-1af516b4bd29" x="0" y="0" width="90" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{riwayat_kesehatan_gejala}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2178561b-3f63-4112-9ef6-0e2a6e23e911">
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="0981a7ff-f93c-4b8e-8d4b-2961b648bcd3" x="0" y="0" width="90" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{riwayat_kesehatan_diagnosa}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="83" uuid="ee636242-c5c8-4282-98df-be01a7a74a28">
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="d2d3df04-9f28-416b-a497-ea8398b4fe2f" x="0" y="0" width="83" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{riwayat_kesehatan_tindakan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="87" uuid="e04d5d04-c14c-4da9-ba7b-9f1301fc1a7d">
+						<jr:detailCell style="table 5_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement uuid="1143ae41-3303-4039-b1a7-bc15c32cd3bf" x="0" y="0" width="87" height="20"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{riwayat_kesehatan_keterangan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<rectangle>
+				<reportElement uuid="16070397-b272-4102-8e27-37f7e5b84872" x="49" y="358" width="476" height="20" forecolor="#FFFFFF" backcolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="63" y="358" width="30" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="101" y="358" width="48" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="191" y="358" width="63" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gejala]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="288" y="358" width="56" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Diagnosa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="371" y="358" width="62" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Tindakan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac944c28-c2f7-4eb8-a34f-8de31828b5af" x="452" y="358" width="73" height="20" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>

@@ -5,6 +5,7 @@
  */
 package pencatatan.admin;
 
+import pencatatan.Login;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +16,9 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -73,14 +76,38 @@ public class Laporan extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         text_kembali = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        cetak = new javax.swing.JButton();
+        bg1 = new javax.swing.JPanel();
+        nav1 = new javax.swing.JPanel();
+        text_administrator1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        icon1 = new javax.swing.JLabel();
+        home_nav1 = new javax.swing.JPanel();
+        icon_home1 = new javax.swing.JLabel();
+        text_dashboard1 = new javax.swing.JLabel();
+        icon_add1 = new javax.swing.JLabel();
+        text_profil1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        text_tentang1 = new javax.swing.JLabel();
+        icon_add3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        text_kembali1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabel1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         txtCetak = new javax.swing.JTextField();
+        cetak = new javax.swing.JButton();
+        cari = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -130,7 +157,7 @@ public class Laporan extends javax.swing.JFrame {
 
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(0, 0, 0));
-        text_dashboard.setText("Dashboard");
+        text_dashboard.setText("Home");
         home_nav.add(text_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         nav.add(home_nav, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 212, 200, 43));
@@ -207,23 +234,13 @@ public class Laporan extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Home > Dashboard > Laporan");
+        jLabel8.setText("Home > Laporan");
         jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
         jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
 
         bg.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 690, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Dashboard");
-        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Version 0.0");
-        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 71, -1, 20));
 
         text_kembali.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         text_kembali.setForeground(new java.awt.Color(35, 63, 116));
@@ -268,6 +285,192 @@ public class Laporan extends javax.swing.JFrame {
         jLabel1.setText("DATA TERNAK");
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
 
+        bg1.setBackground(new java.awt.Color(255, 255, 255));
+        bg1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nav1.setBackground(new java.awt.Color(35, 63, 116));
+        nav1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        text_administrator1.setBackground(new java.awt.Color(255, 255, 255));
+        text_administrator1.setFont(new java.awt.Font("Segoe UI Light", 0, 23)); // NOI18N
+        text_administrator1.setForeground(new java.awt.Color(204, 204, 204));
+        text_administrator1.setText("Administrator");
+        text_administrator1.setFocusable(false);
+        nav1.add(text_administrator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, -1));
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+
+        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boss.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icon1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        nav1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 54, -1, -1));
+
+        home_nav1.setBackground(new java.awt.Color(255, 255, 255));
+        home_nav1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        icon_home1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
+        home_nav1.add(icon_home1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        text_dashboard1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        text_dashboard1.setForeground(new java.awt.Color(0, 0, 0));
+        text_dashboard1.setText("Home");
+        home_nav1.add(text_dashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        nav1.add(home_nav1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 212, 200, 43));
+
+        icon_add1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        nav1.add(icon_add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 274, -1, -1));
+
+        text_profil1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        text_profil1.setForeground(new java.awt.Color(255, 255, 255));
+        text_profil1.setText("Profil");
+        text_profil1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_profil1MouseClicked(evt);
+            }
+        });
+        nav1.add(text_profil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 273, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(35, 63, 116));
+        jButton2.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Log out");
+        jButton2.setBorderPainted(false);
+        jButton2.setDefaultCapable(false);
+        jButton2.setFocusPainted(false);
+        jButton2.setFocusable(false);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        nav1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
+
+        text_tentang1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        text_tentang1.setForeground(new java.awt.Color(255, 255, 255));
+        text_tentang1.setText("Tentang");
+        text_tentang1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_tentang1MouseClicked(evt);
+            }
+        });
+        nav1.add(text_tentang1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        icon_add3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about.png"))); // NOI18N
+        nav1.add(icon_add3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+
+        bg1.add(nav1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 570));
+
+        jPanel4.setBackground(new java.awt.Color(35, 63, 116));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jLabel5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel5KeyPressed(evt);
+            }
+        });
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
+
+        bg1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 760, 30));
+
+        jPanel14.setBackground(new java.awt.Color(35, 63, 116));
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Home > Laporan");
+        jPanel14.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
+        jPanel14.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
+
+        bg1.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 690, 30));
+
+        text_kembali1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        text_kembali1.setForeground(new java.awt.Color(35, 63, 116));
+        text_kembali1.setText("   Kembali");
+        text_kembali1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(35, 63, 116)));
+        text_kembali1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_kembali1MouseClicked(evt);
+            }
+        });
+        bg1.add(text_kembali1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, 70, 28));
+
+        tabel1.setBackground(new java.awt.Color(255, 255, 255));
+        tabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        tabel1.setForeground(new java.awt.Color(0, 0, 0));
+        tabel1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nomer Ternak", "Tanggal Sapih", "Tanggal lahir/tipe kelamin", "Jenis Hewan", "Nomor Induk/Jantan", "Bobot", "Status", "Keterangan"
+            }
+        ));
+        tabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabel1);
+
+        bg1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 580, 230));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("DATA TERNAK");
+        bg1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Home");
+        bg1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Version 0.0");
+        bg1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 76, -1, -1));
+
+        txtCetak.setBackground(new java.awt.Color(255, 255, 255));
+        txtCetak.setForeground(new java.awt.Color(0, 0, 0));
+        bg1.add(txtCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 160, 30));
+
         cetak.setBackground(new java.awt.Color(255, 255, 255));
         cetak.setForeground(new java.awt.Color(0, 0, 0));
         cetak.setText("Cetak");
@@ -278,11 +481,22 @@ public class Laporan extends javax.swing.JFrame {
                 cetakActionPerformed(evt);
             }
         });
-        bg.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 100, 30));
+        bg1.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 100, 30));
 
-        txtCetak.setBackground(new java.awt.Color(255, 255, 255));
-        txtCetak.setForeground(new java.awt.Color(0, 0, 0));
-        bg.add(txtCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 160, 30));
+        cari.setBackground(new java.awt.Color(255, 255, 255));
+        cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariKeyReleased(evt);
+            }
+        });
+        bg1.add(cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 150, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Search");
+        bg1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 70, -1));
+
+        bg.add(bg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -362,6 +576,47 @@ public class Laporan extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_cetakActionPerformed
 
+    private void text_profil1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_profil1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_profil1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void text_tentang1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_tentang1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_tentang1MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5KeyPressed
+
+    private void text_kembali1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_kembali1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_kembali1MouseClicked
+
+    private void tabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabel1MouseClicked
+
+    private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
+        // TODO add your handling code here:
+        String search = cari.getText();
+        TableRowSorter tr = new TableRowSorter(model);
+        tabel.setRowSorter(tr);
+        //set kolom pencarian (indeks kolom)
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_cariKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -399,30 +654,54 @@ public class Laporan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JPanel bg1;
+    private javax.swing.JTextField cari;
     private javax.swing.JButton cetak;
     private javax.swing.JPanel home_nav;
+    private javax.swing.JPanel home_nav1;
     private javax.swing.JLabel icon;
+    private javax.swing.JLabel icon1;
     private javax.swing.JLabel icon_add;
+    private javax.swing.JLabel icon_add1;
     private javax.swing.JLabel icon_add2;
+    private javax.swing.JLabel icon_add3;
     private javax.swing.JLabel icon_home;
+    private javax.swing.JLabel icon_home1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel nav;
+    private javax.swing.JPanel nav1;
     private javax.swing.JTable tabel;
+    private javax.swing.JTable tabel1;
     private javax.swing.JLabel text_administrator;
+    private javax.swing.JLabel text_administrator1;
     private javax.swing.JLabel text_dashboard;
+    private javax.swing.JLabel text_dashboard1;
     private javax.swing.JLabel text_kembali;
+    private javax.swing.JLabel text_kembali1;
     private javax.swing.JLabel text_profil;
+    private javax.swing.JLabel text_profil1;
     private javax.swing.JLabel text_tentang;
+    private javax.swing.JLabel text_tentang1;
     private javax.swing.JTextField txtCetak;
     // End of variables declaration//GEN-END:variables
 

@@ -5,6 +5,7 @@
  */
 package pencatatan.operator;
 
+import pencatatan.Login;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +15,9 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -72,14 +75,16 @@ public class Laporan extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         text_kembali = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtCetak = new javax.swing.JTextField();
         cetak = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cari = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -129,7 +134,7 @@ public class Laporan extends javax.swing.JFrame {
 
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(0, 0, 0));
-        text_dashboard.setText("Dashboard");
+        text_dashboard.setText("Home");
         home_nav.add(text_dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         nav.add(home_nav, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 212, 200, 43));
@@ -206,23 +211,13 @@ public class Laporan extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Home > Dashboard > Laporan");
+        jLabel8.setText("Home > Laporan");
         jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/house.png"))); // NOI18N
         jPanel13.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
 
         bg.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 690, 30));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Dashboard");
-        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Version 0.0");
-        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 71, -1, 20));
 
         text_kembali.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         text_kembali.setForeground(new java.awt.Color(35, 63, 116));
@@ -269,7 +264,7 @@ public class Laporan extends javax.swing.JFrame {
 
         txtCetak.setBackground(new java.awt.Color(255, 255, 255));
         txtCetak.setForeground(new java.awt.Color(0, 0, 0));
-        bg.add(txtCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 160, 30));
+        bg.add(txtCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 160, 30));
 
         cetak.setBackground(new java.awt.Color(255, 255, 255));
         cetak.setForeground(new java.awt.Color(0, 0, 0));
@@ -281,7 +276,30 @@ public class Laporan extends javax.swing.JFrame {
                 cetakActionPerformed(evt);
             }
         });
-        bg.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 100, 30));
+        bg.add(cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 100, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("Home");
+        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, 30));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Version 0.0");
+        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 76, -1, -1));
+
+        cari.setBackground(new java.awt.Color(255, 255, 255));
+        cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariKeyReleased(evt);
+            }
+        });
+        bg.add(cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 150, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Search");
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 70, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -328,7 +346,12 @@ public class Laporan extends javax.swing.JFrame {
 
     private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
         // TODO add your handling code here:
+        int i = tabel.getSelectedRow();
         
+        if(i>-1){
+            txtCetak.setText(model.getValueAt(i, 0).toString());
+            
+        }
     }//GEN-LAST:event_tabelMouseClicked
 
     private void cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakActionPerformed
@@ -355,6 +378,15 @@ public class Laporan extends javax.swing.JFrame {
             //            JOptionPane.showMessageDialog(rootPane, e);
             //        }
     }//GEN-LAST:event_cetakActionPerformed
+
+    private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
+        // TODO add your handling code here:
+        String search = cari.getText();
+        TableRowSorter tr = new TableRowSorter(model);
+        tabel.setRowSorter(tr);
+        //set kolom pencarian (indeks kolom)
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_cariKeyReleased
 
     /**
      * @param args the command line arguments
@@ -393,6 +425,7 @@ public class Laporan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JTextField cari;
     private javax.swing.JButton cetak;
     private javax.swing.JPanel home_nav;
     private javax.swing.JLabel icon;
@@ -401,6 +434,7 @@ public class Laporan extends javax.swing.JFrame {
     private javax.swing.JLabel icon_home;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

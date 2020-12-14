@@ -5,6 +5,17 @@
  */
 package pencatatan.admin;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import pencatatan.Login;
+
 /**
  *
  * @author Agus.S
@@ -14,11 +25,17 @@ public class Profil extends javax.swing.JFrame {
     /**
      * Creates new form HomePage
      */
+    DefaultTableModel model;
     public Profil() {
         initComponents();
+        String [] judul = {"Id","Nama","Username","Password"};
+        model = new DefaultTableModel(judul,0);
+        tabel.setModel(model);
+        tampilkan();
     }
     
     private void reset(){
+        id.setText("");
         nama.setText("");
         username.setText("");
         password.setText("");
@@ -77,7 +94,6 @@ public class Profil extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        icon2 = new javax.swing.JLabel();
         nama = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
@@ -86,6 +102,11 @@ public class Profil extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         ubah = new javax.swing.JButton();
         batal = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabel = new javax.swing.JTable();
+        icon3 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -162,7 +183,7 @@ public class Profil extends javax.swing.JFrame {
 
         text_dashboard.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         text_dashboard.setForeground(new java.awt.Color(255, 255, 255));
-        text_dashboard.setText("Dashboard");
+        text_dashboard.setText("Home");
         text_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 text_dashboardMouseClicked(evt);
@@ -379,9 +400,6 @@ public class Profil extends javax.swing.JFrame {
         jLabel13.setText("Version 0.0");
         bg1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, 20));
 
-        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boss.png"))); // NOI18N
-        bg1.add(icon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, -1, -1));
-
         nama.setBackground(new java.awt.Color(255, 255, 255));
         nama.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         nama.setForeground(new java.awt.Color(0, 0, 0));
@@ -390,32 +408,32 @@ public class Profil extends javax.swing.JFrame {
                 namaActionPerformed(evt);
             }
         });
-        bg1.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 350, 30));
+        bg1.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 160, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nama");
-        bg1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
+        bg1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
 
         username.setBackground(new java.awt.Color(255, 255, 255));
         username.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         username.setForeground(new java.awt.Color(0, 0, 0));
-        bg1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 160, 30));
+        bg1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 160, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Username");
-        bg1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
+        bg1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, -1));
 
         password.setBackground(new java.awt.Color(255, 255, 255));
         password.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         password.setForeground(new java.awt.Color(0, 0, 0));
-        bg1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 160, 30));
+        bg1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 160, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Password");
-        bg1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, -1, -1));
+        bg1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, -1, -1));
 
         ubah.setBackground(new java.awt.Color(255, 255, 255));
         ubah.setForeground(new java.awt.Color(0, 0, 0));
@@ -426,7 +444,7 @@ public class Profil extends javax.swing.JFrame {
                 ubahActionPerformed(evt);
             }
         });
-        bg1.add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 470, -1, -1));
+        bg1.add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
 
         batal.setBackground(new java.awt.Color(255, 255, 255));
         batal.setForeground(new java.awt.Color(0, 0, 0));
@@ -437,7 +455,47 @@ public class Profil extends javax.swing.JFrame {
                 batalActionPerformed(evt);
             }
         });
-        bg1.add(batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, -1, -1));
+        bg1.add(batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, -1, -1));
+
+        tabel.setBackground(new java.awt.Color(255, 255, 255));
+        tabel.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
+        tabel.setForeground(new java.awt.Color(0, 0, 0));
+        tabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nama", "Useename", "Password"
+            }
+        ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabel);
+
+        bg1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 300, 190));
+
+        icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boss.png"))); // NOI18N
+        bg1.add(icon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 130, 130));
+
+        id.setBackground(new java.awt.Color(255, 255, 255));
+        id.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        id.setForeground(new java.awt.Color(0, 0, 0));
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
+        bg1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 160, 30));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Id");
+        bg1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, -1));
 
         bg.add(bg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 570));
 
@@ -522,15 +580,39 @@ public class Profil extends javax.swing.JFrame {
     }//GEN-LAST:event_namaActionPerformed
 
     private void ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahActionPerformed
-
         // TODO add your handling code here:
-
+        try {
+            // TODO add your handling code here:
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pencatatan","root","");
+            cn.createStatement().executeUpdate("update admin set nama ='"+nama.getText()+"',username ='"+username.getText()+"',password ='"+password.getText()+"' where id ='"+id.getText()+"'");
+            tampilkan();
+            JOptionPane.showMessageDialog(null,"Berhasil diubah....!!");
+            reset();
+        } catch (SQLException ex) {
+            Logger.getLogger(dataTernak.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ubahActionPerformed
 
     private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
         // TODO add your handling code here:
         reset();
     }//GEN-LAST:event_batalActionPerformed
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+        int i = tabel.getSelectedRow();
+
+        if(i>-1){
+            id.setText(model.getValueAt(i, 0).toString());
+            nama.setText(model.getValueAt(i, 1).toString());
+            username.setText(model.getValueAt(i, 2).toString());
+            password.setText(model.getValueAt(i, 3).toString());
+        }
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,13 +655,14 @@ public class Profil extends javax.swing.JFrame {
     private javax.swing.JPanel bg1;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon1;
-    private javax.swing.JLabel icon2;
+    private javax.swing.JLabel icon3;
     private javax.swing.JLabel icon_add;
     private javax.swing.JLabel icon_add1;
     private javax.swing.JLabel icon_add2;
     private javax.swing.JLabel icon_add3;
     private javax.swing.JLabel icon_add4;
     private javax.swing.JLabel icon_add5;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -587,6 +670,7 @@ public class Profil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -603,10 +687,12 @@ public class Profil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nama;
     private javax.swing.JPanel nav;
     private javax.swing.JPanel nav1;
     private javax.swing.JTextField password;
+    private javax.swing.JTable tabel;
     private javax.swing.JLabel text_administrator;
     private javax.swing.JLabel text_administrator1;
     private javax.swing.JLabel text_dashboard;
@@ -618,4 +704,22 @@ public class Profil extends javax.swing.JFrame {
     private javax.swing.JButton ubah;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+
+    private void tampilkan() {
+        //To change body of generated methods, choose Tools | Templates.
+        int row = tabel.getRowCount();
+        for(int a = 0; a<row;a++){
+            model.removeRow(0);
+        }
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/pencatatan","root","");
+            ResultSet rs = cn.createStatement().executeQuery("SELECT * FROM admin");
+            while(rs.next()){
+                String data [] = {rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)};
+                model.addRow(data);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(pencatatan.operator.dataTernak.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
